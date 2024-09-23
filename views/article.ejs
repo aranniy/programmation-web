@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/article.css" rel="stylesheet">
+  <link href="/css/accueil.css" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="icon" href="/images/logo.png" type="image/png" />
+  <title>
+    <%= vetement.nom %>
+  </title>
+</head>
+
+<body body data-spy="scroll" data-target=".navbar">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li> <a class="nav-link" href="/">Page d'accueil</a> </li>
+      </ul>
+    </div>
+    <div class="icones">
+      <a class="icon" href="/panier"><span class="material-symbols-outlined">shopping_cart</span></a>
+      <a class="icon" href="/article/aleatoire" ><i class="fas fa-random"></i></a>
+    </div>
+  </nav>
+  <div id="page">
+    <div id="article_unique">
+      <div id="photos">
+        <span class="material-symbols-outlined" class="fleche" id="gauche">arrow_back_ios</span>
+        <% for (let i=0; i < photos.length; i++) { %>
+          <img class="image" style="display: none" src="/<%= photos[i].lien %>" alt="">
+        <% } %>
+        <span class="material-symbols-outlined" class="fleche" id="droite">arrow_forward_ios</span>
+      </div>
+      <div id="info">
+        <h1>
+          <%= vetement.nom %>
+        </h1>
+        <h3>
+          <%= vetement.prix %>€
+        </h3>
+        <span>couleur : <%= vetement.couleur %> <br> <%= vetement.categorie %> - <%= vetement.sous_categorie %></span>
+        <form id="formulaire" method="post" action="/article/<%= vetement.id_vetement %>" style="display: contents;">
+          <select name="taille" id="select_taille" style="width: fit-content;">
+            <option value="-1">Choisissez une taille</option>
+            <% for (let i=0; i < tailles.length; i++) { %>
+              <option value="<%= tailles[i].taille %>">
+                <%= tailles[i].taille %>
+              </option>
+            <% } %>
+          </select>
+          <% if(message === 'ajout' ){ %>
+            <span style="color:green; font-size:13px;">L'article a bien été ajouté à votre <a style="color:green; text-decoration:underline" href="/panier">panier</a>.</span>
+          <% } %>
+          <button class="btn btn-danger" id="ajout_panier" type="submit" style="width: fit-content;" disabled>
+            Ajouter au panier
+          </button>
+        </form>
+        <% if(vetement.id_accessoire != 0 ){ %>
+          <div class="accessoire">
+            <span>Suggestion d'accessoire</span>
+            <a href="/article/<%= vetement.id_accessoire %>" style=" color: #e57683;"><%= nomAccesoire %></a>
+          </div>
+        <% } %>
+      </div>
+    <div>
+      <a id="close" href="/#<%= vetement.id_vetement %>" </a>
+        <span class="material-symbols-outlined">close</span>
+      </a>
+    </div>
+  </div>
+  <!-- Section des commentaires -->
+  <div id="commentaires">
+    <h2>Commentaires</h2>
+    <% for (let i=0; i < commentaires.length; i++) { %>
+      <div class="commentaire">
+        <p><%= commentaires[i].contenu %></p>
+      </div>
+    <% } %>
+    <!-- Formulaire pour ajouter un commentaire -->
+    <form method="post" action="/article/<%= vetement.id_vetement %>">
+      <input name="contenu" id="content" type="text">
+      <button type="submit">Ajouter</button>
+    </form>
+  </div>  
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="/js/article.js"></script>
+</body>
+
+</html>

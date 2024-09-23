@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Panier</title>
+  <!-- Chargement de Bootstrap -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Chargement de la police d'icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/panier.css">
+  <link rel="icon" href="/images/logo.png" type="image/png" />
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-pink-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Arfa</a>
+    </div>
+    </nav>
+  <div class="container my-5">
+    <h1 class="text-center mb-5">Votre panier</h1>
+    <div class="row">
+      <div class="col-md-9 col-lg-8 order-sm-1">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Produit</th>
+              <th>Taille</th>
+              <th>Prix unitaire</th>
+              <th>Quantité</th>
+              <th>Prix total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let produit of produits) { %>
+              <tr>
+                <td><a href="/article/<%=produit.id_vetement%>"><%=produit.nom%></a></td>
+                <td><%= produit.taille %> </td>
+                <td><%= produit.prix %> €</td>
+                <td><%= produit.quantite %></td>
+                <td><%= produit.prix * produit.quantite %> €</td>
+                <td><button class="btn btn-danger" data-id="<%=produit.id%>"><i class="fas fa-trash"></i></button></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-3 col-lg-4 order-sm-2">
+        <div class="card total">
+          <div class="card-body">
+            <h5 class="card-title">Total</h5>
+            <p class="card-text">Sous-total : <%= total %> €</p>
+            <p class="card-text">Livraison : gratuite</p>
+            <h4 class="card-text">Total : <%= total %> €</h4>
+            <button class="btn btn-danger btn-block bg-pink-custom">Payer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- placement préconisé par le site de boostrap : ici -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="/js/panier.js"></script>
+  </body>
+</html>

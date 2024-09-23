@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>formulaire</title>
+  <!-- Chargement de Bootstrap -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Chargement de la police d'icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/confirmation.css">
+  <link rel="icon" href="/images/logo.png" type="image/png" />
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-pink-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Arfa</a>
+    </div>
+</nav>
+  <div class="container text-center my-5">
+  <h1>Merci pour votre commande !</h1>
+    <p>Voici les informations que vous avez soumises :</p>
+    <div>Nom: <%= nom %></div>
+    <div>Prénom: <%= prenom %></div>
+    <div>Date de naissance: <%= birthdate %></div>
+    <div>Téléphone: <%= tel %></lidiv>
+    <div>Email: <%= email %></div>
+    <div>Adresse: <%= adresse %></div>
+    <div>Heure de livraison souhaitée: <%= heure %></div>
+    <p>Votre commande sera livrée sous peu. Merci de votre confiance !</p>
+    <a href="/" class="btn btn-danger bg-pink-custom my-5"> Retour à la page d'accueil</a>
+  </div>
+    <!-- placement préconisé par le site de boostrap : ici -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+</body>
+</html>

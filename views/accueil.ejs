@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/accueil.css" rel="stylesheet">
+  <link rel="stylesheet" 
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="icon" href="/images/logo.png" type="image/png" />
+  <title>Page d'accueil</title>
+</head>
+
+<body body data-spy="scroll" data-target=".navbar">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li> <a class="nav-link" href="/Femme">FEMME</a> </li>
+        <li> <a class="nav-link" href="/Homme">HOMME</a> </li>
+        <li> <a class="nav-link" href="/">TOUS</a> </li>
+      </ul>
+    </div>
+    <div class="icones">
+      <a class="icon" href="/panier"><span class="material-symbols-outlined">shopping_cart</span></a>
+      <a class="icon" href="/article/aleatoire" ><i class="fas fa-random"></i></a>
+      <span class="icon" id="gerant"><span class="material-symbols-outlined">settings</span></span>
+      <span class="icon" id="button_filter"><span class="material-symbols-outlined">tune</span></span>
+    </div>
+  </nav>
+
+  <div id="connexion" <% if(message !='incorrect' ){ %> style="display: none;" <% } %>>
+      <form id="form_connexion" action="/gestion" method="post">
+        <span class="material-symbols-outlined" id="close">close</span>
+        <span>Connexion Gérant</span>
+        <label for="pseudo">Pseudo</label>
+        <input class="input_connexion" type="text" id="pseudo" name="pseudo">
+        <label for="mdp">Mot de passe</label>
+        <input class="input_connexion" type="password" id="mdp" name="mdp">
+        <input type="submit" value="Se connecter">
+        <% if(message==='incorrect' ){ %>
+          <span style="color: red;">Pseudo ou mot de passe incorrect</span>
+          <% } %>
+      </form>
+  </div>
+
+  <div class="page">
+    <form method="post" id="filtre">
+      <div class="un_filtre">
+        <label><b>Catégorie</b></label>
+        <div class="filtre_choix">
+          <% for (let i=0; i < filtres.categories.length; i++) { %>
+            <div>
+              <input type="checkbox" id="<%= filtres.categories[i] %>" name="categorie"
+                value="<%= filtres.categories[i] %>">
+              <label for="<%= filtres.categories[i] %>">
+                <%= filtres.categories[i] %>
+              </label>
+            </div>
+            <% } %>
+        </div>
+      </div>
+
+      <div class="un_filtre">
+        <label><b>Couleur</b></label>
+        <div class="filtre_choix">
+          <% for (let i=0; i < filtres.couleurs.length; i++) { %>
+            <div>
+              <input type="checkbox" id="<%= filtres.couleurs[i] %>" name="couleur" value="<%= filtres.couleurs[i] %>">
+              <label for="<%= filtres.couleurs[i] %>">
+                <%= filtres.couleurs[i] %>
+              </label>
+            </div>
+            <% } %>
+        </div>
+      </div>
+
+      <div class="un_filtre">
+        <label><b>Style</b></label>
+        <div class="filtre_choix">
+          <% for (let i=0; i < filtres.styles.length; i++) { %>
+            <div>
+              <input type="checkbox" id="<%= filtres.styles[i] %>" name="style_vet" value="<%= filtres.styles[i] %>">
+              <label for="<%= filtres.styles[i] %>">
+                <%= filtres.styles[i] %>
+              </label>
+            </div>
+            <% } %>
+        </div>
+      </div>
+
+      <div class="un_filtre">
+        <label><b>Taille</b></label>
+        <div class="filtre_choix" style="display:grid; grid-template-columns: repeat(3, 1fr);">
+          <% for (let i=0; i < filtres.tailles.length; i++) { %>
+            <div>
+              <input type="checkbox" id="<%= filtres.tailles[i] %>" name="taille" value="<%= filtres.tailles[i] %>">
+              <label for="<%= filtres.tailles[i] %>">
+                <%= filtres.tailles[i] %>
+              </label>
+            </div>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="un_filtre" style="border-bottom: 0; margin-bottom: 20px;">
+        <label><b>Prix Max</b></label>
+        <div class="filtre_choix" >
+          <input type="range" name="prix" min="0" max="<%= prixMax %>" step="5" value="0"> 
+          <span id="valeur"></span>
+        </div>
+        
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="bouton_filter">Filtrer</button>
+    </form>
+    <% if(listeVet.length===0){ %>
+      <span style="color:red; text-align: center;">Aucun vêtement ne correspond à votre recherche.</span>
+      <% } %>
+
+        <div id="article-row">
+          <% for (let i=0; i < listeVet.length; i++) {%>
+            <a href="/article/<%=listeVet[i].id%>" class="article" id="<%= listeVet[i].id %>">
+              <div class="image_article"><img src="/<%= photos.find(x => x.id_vetement === (listeVet[i].id)).lien %>"
+                  alt=""></div>
+              <span class="prix" style="display: none; color: cornflowerblue;">
+                <%= listeVet[i].prix %> €
+              </span>
+              <span>
+                <%= listeVet[i].nom %>
+              </span>
+            </a>
+            <% } %>
+        </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="/js/accueil.js"></script>
+</body>
+
+</html>
