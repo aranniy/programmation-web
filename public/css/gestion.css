@@ -1,0 +1,83 @@
+.liste,
+.commande {
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 30px auto;
+    padding: 15px;
+    max-height: 500px;
+    overflow-y: scroll;
+    align-items: center;
+    background-color: white;
+}
+
+.vetement {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: solid;
+    margin-bottom: 10px;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+
+@media screen and (max-width: 900px) {
+    .vetement {
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .vetement {
+        flex-direction: row;
+    }
+}
+
+.photo {
+    height: 220px;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+    width: 50%;
+}
+
+.actions {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ajouter {
+    border: 1px solid;
+    display: grid;
+    width: 80%;
+    margin: 10px auto;
+    padding: 20px;
+    grid-gap: 5px;
+    background-color: white;
+    overflow: scroll;
+}
+
+@media screen and (max-width: 700px) {
+    .ajouter {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .ajouter {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+h3 {
+    margin-top: 20px;
+    text-align: center;
+}

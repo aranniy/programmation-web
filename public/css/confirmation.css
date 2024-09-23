@@ -1,0 +1,26 @@
+body {
+    background-image: url(../images/fleur.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+.container.text-center.my-5 {
+  background-color: #F8F8F8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.bg-pink-custom {
+    background-color: #e57683;
+}
+
+.btn-danger {
+    background-color: #e57683;
+    border-color: #e57683;
+    transition: background-color 0.3s ease;
+  }
+  
+.btn-danger:hover {
+    background-color: #e05061;
+    border-color: #e05061;
+}

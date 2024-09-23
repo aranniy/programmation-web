@@ -1,0 +1,30 @@
+.bg-pink-custom {
+    background-color: #e57683;
+}
+
+body {
+    background-image: url(../images/fleur.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+  background-color: #F8F8F8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.btn-danger {
+    background-color: #e57683;
+    border-color: #e57683;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-danger:hover {
+    background-color: #e05061;
+    border-color: #e05061;
+  }
+
+h1 {
+    color: #e57683;
+}

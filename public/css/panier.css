@@ -1,0 +1,54 @@
+.bg-pink-custom {
+    background-color: #e57683;
+  }
+  
+  /* Style pour le titre "Votre panier" */
+h1 {
+  color: #e57683;
+  font-size: 36px;
+}
+
+/* Style pour les liens des produits */
+table tbody tr td a {
+  color: #e57683;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+table tbody tr td a:hover {
+  color: #e57683;
+}
+
+/* Style pour les boutons de suppression */
+.btn-danger {
+  background-color: #e57683;
+  border-color: #e57683;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #e05061;
+  border-color: #e05061;
+}
+
+/* Style pour le bouton de paiement */
+.btn-block {
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.total,.container.my-5 {
+  background-color: #F8F8F8;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+body {
+  background-image: url(../images/fleur.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
